@@ -19,6 +19,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url('public/assets/css/styles.min.css') }}" />
 
 </head>
 <!--
@@ -32,6 +33,7 @@
 -->
 
 <body class="hold-transition sidebar-mini">
+
     <div class="wrapper">
         <!-- Navbar start-->
 
@@ -76,6 +78,9 @@
 
         <!-- Bootstrap Switch -->
         <script src="{{ url('public/admin/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+
+        
 </body>
 
 </html>

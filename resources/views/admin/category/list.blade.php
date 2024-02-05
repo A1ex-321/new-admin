@@ -47,37 +47,34 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Name</th>
-                    <th>Message</th>
-                    <th>phone</th>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>Name</th>
+        <th>Message</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($getRecord as $value)
+      <tr>
+        <td>{{$value->id}}</td>
+        <td>{{$value->name}}</td>
+        <td>{{$value->msg}}</td>
+        <td>{{$value->phone}}</td>
+        <td>
+          <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/brand/deletemail/'.$value->id)}}" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Delete
+          </a>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
 
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($getRecord as  $value)
-
-                  <tr>
-                    <td>{{$value->id}}</td>
-                    <td>{{$value->name}}</td>
-                    <td>{{$value->msg}}</td>
-                    <td>{{$value->phone}}</td>
-
-                      <td>
-                          
-                          <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/brand/deletemail/'.$value->id)}}" class="btn "><i class="fas fa-trash"></i></a>
-
-                      </td>
-                  </tr>
-                  @endforeach
-
-
-                </tbody>
-              </table>
-            </div>
             <!-- /.card-body -->
           </div>
           </div>

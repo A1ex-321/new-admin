@@ -3,83 +3,126 @@
     border-top: 1px solid #ccc; /* Change color as needed */
     margin-top: 10px; /* Adjust margin as needed */
 }
+.sidebar-divider {
+    height: 1px;
+    background-color: #333; /* or any other color you prefer */
+    margin: 10px 0; /* adjust margin according to your design */
+}
+
 /* Hide scrollbar for Chrome, Safari, and Opera */
-.sidebar::-webkit-scrollbar {
-    display: none;
-}
 
-/* Hide scrollbar for IE, Edge, and Firefox */
-.sidebar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-.sidebar {
-    overflow-y: auto;
-    height: 100vh; /* Adjust the height as needed */
-    position: fixed;
-    top: 0;
-}
-
-/* Optional: To add a custom scrollbar style */
-.sidebar::-webkit-scrollbar {
-    width: 8px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #888;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
 
 </style>
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Left navbar links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
-  </ul>
+<style>
+    @media only screen and (max-width: 768px) {
+        .navbar-nav .nav-link {
+            margin: 5px 0; /* Adjust the margin for smaller screens */
+        }
 
-  <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-    <!-- Navbar Search -->
+        .navbar-nav.ml-auto .nav-link {
+            margin-right: 10px; /* Adjust the margin for smaller screens */
+        }
 
+        .user-panel .info {
+            margin-left: 10px; /* Adjust the margin for smaller screens */
+        }
+    }
 
-    <!-- Messages Dropdown Menu -->
-    <li class="nav-item ">
-      <a class="nav-link" href="{{url('admin/logout')}}">
-        <i class="fas fa-sign-out-alt"></i>
+    /* Add any additional styling here for larger screens if needed */
+</style>
+<style>
+        /* Custom styles for navbar */
+        .navbar {
+            background-color: #f8f9fa; /* Navbar background color */
+        }
 
-        Logout
+        .navbar-nav .nav-item:hover .nav-link {
+            color: #007bff; /* Hover color for list items */
+        }
 
-      </a>
+        .user-panel .image i {
+            color: #007bff; /* User icon color */
+        }
 
-    </li>
-    <!-- Notifications Dropdown Menu -->
+        .dropdown-menu a {
+            color: #343a40; /* Dropdown link color */
+        }
 
-    <li class="nav-item">
-      <a class="nav-link " data-toggle="dropdown" href="#">
-        <i class="fa fa-bell" aria-hidden="true"></i>
-        Inbox
-      </a>
+        .dropdown-menu a:hover {
+            background-color: #007bff; /* Dropdown link hover background color */
+            color: #fff; /* Dropdown link hover text color */
+        }
+    </style>
+<style>
+    .navbar-nav li.nav-item {
+        border-radius: 8px; /* Adjust the value to your desired border radius */
+    }
 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
+    .navbar-nav li.nav-item:hover {
+        background-color: yellow; /* Change to your desired hover background color */
+    }
+</style>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="width: 1080px">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item1">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <i class="fas fa-user-circle fa-2x" style="height: 30px;"></i>
+                </div>
+                <div class="info">
+                @auth
+        <a href="#" style="color:black;"class="d-block">{{ auth()->user()->name }}</a>
+    @endauth                </div>
+            </div>
+        </li>
+    </ul>
 
-  </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <div class="dropdown">
+                <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                Inbox
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+        </li>
+
+        <!-- Additional tags for styling -->
+        <li class="nav-item">
+            <a href="#" class="nav-link">Face book</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">WhatsApp</a>
+        </li>
+        <!-- Add more tags as needed -->
+
+    </ul>
 </nav>
+
+
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -92,287 +135,188 @@
   </a> -->
 
   <!-- Sidebar -->
-  <div class="sidebar" style="height: 570px; overflow-y: auto;">
+  <div class="sidebar" style="position: fixed; height: 100%; overflow-y: auto; background-color: #ABDDF3;
+">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="margin-right:8px;">
-      <div class="image">
-        <img src="{{url('public/admin/assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
-          alt="User Image">
-      </div>
-      <div class="info">
-      @auth
-        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-    @endauth
-      </div>
-    </div>
+    
 
     <!-- SidebarSearch Form -->
-    <div class="form-inline"style="width:95%;">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+    <div class="form-inline" style="width:232px;">
+    
+</div>
 
 
 
-        <!-- <li class="nav-item">
-          <a href="{{url('admin/dashboard')}}" class="nav-link @if (Request::segment(2)=='dashboard') active @endif">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Dashboard
-
-            </p>
-          </a>
-
-        </li> -->
-        @auth
+    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <!-- <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li> -->
+            @auth
         @if(auth()->user()->role == 1)
-        <li class="nav-item">
-          <a href="{{url('/admin/admin/list')}}"
-            class="nav-link {{ request()->segment(2) === 'admin' ? 'active' : '' }}">
-            <i class="fa fa-tasks"></i>
-            <p>
-              Users
-            </p>
-          </a>
-        </li> 
-        @endif
+            <li style="margin-top:10px;" class="sidebar-item">
+              <a class="sidebar-link nav-link {{ request()->segment(2) === 'admin' ? 'active' : '' }}" href="{{url('/admin/admin/list')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">User</span>
+              </a>
+            </li>
+            @endif
         @endauth
-      
-
-        <li class="nav-item">
-          <a href="{{url('/admin/maillist')}}"
-            class="nav-link {{ request()->segment(2) === 'maillist' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-              Message
-
-            </p>
-          </a>
+           
+          
+    
+            <li style="margin-top:10px;" class="sidebar-item">
+              <a href="{{url('/admin/maillist')}}" class="sidebar-link nav-link {{ request()->segment(2) === 'maillist' ? 'active' : '' }}" aria-expanded="false">
+              <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Message</span>
+              </a>
+            </li>
+           
+            <li style="margin-top:10px;" class="sidebar-item">
+              <a class="sidebar-link nav-link {{ request()->segment(2) === 'blog' ? 'active' : '' }}" href="{{route('blog-list')}}" aria-expanded="false">
+                <span>
+                <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">Work</span>
+              </a>
+            </li>
+           
+            @auth
+    @if(auth()->user()->role == 1)
+        <li style="margin-top: 10px;" class="sidebar-item">
+            <a href="{{route('blogsco-list')}}" class="sidebar-link nav-link {{ request()->segment(2) === 'blogseo' ? 'active' : '' }}" aria-expanded="false">
+                <span>
+                <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Sco Blog</span>
+            </a>
         </li>
-      
-        <!-- <li class="nav-item">
-          <a href="{{route('franchiselist')}}"
-            class="nav-link {{ request()->segment(2) === 'franchiselist' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
+    @endif
+@endauth
+@auth
+@if(auth()->user()->role == 1)
+        <li style="margin-top: 10px;" class="sidebar-item">
+            <a href="{{route('blog-logo')}}" class="sidebar-link nav-link {{ request()->segment(2) === 'logo' ? 'active' : '' }}" aria-expanded="false">
+                <span>
+                <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Logo</span>
+            </a>
+        </li>
+    @endif
+@endauth
+<div class="sidebar-divider"></div>
 
-            <p>
-            Franchise
-            </p>
-          </a>
-        </li>  -->
-        <!-- <li class="nav-item">
-          <a href="{{route('brand-list')}}"
-            class="nav-link {{ request()->segment(2) === 'brand' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
+<li class="sidebar-item ">
+    <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+        <span>
+            <i class="ti ti-file-description"></i>
+        </span>
+        <span class="hide-menu">Forms</span>
+    </a>
+</li>
 
-            <p>
-            SMTP
-            </p>
-          </a>
-        </li>  -->
-        <li class="nav-item">
-          <a href="{{route('blog-list')}}"
-            class="nav-link {{ request()->segment(2) === 'blog' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
 
-            <p>
-            work
-            </p>
-          </a>
-        </li> 
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item">
-          <a href="{{route('blogsco-list')}}"
-            class="nav-link {{ request()->segment(2) === 'blogseo' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
 
-            <p>
-            SEO Blog
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item line-between">
-          <a href="{{route('blog-logo')}}"
-            class="nav-link {{ request()->segment(2) === 'logo' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            Logo
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item line-between">
-          <a href="{{route('sco-list')}}"
-            class="nav-link {{ request()->segment(2) === 'sco' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            SEO link
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item">
-          <a href="{{route('home-list')}}"
-            class="nav-link {{ request()->segment(2) === 'home' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            Home
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-         <li class="nav-item">
-          <a href="{{route('about-list')}}"
-            class="nav-link {{ request()->segment(2) === 'about' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            About As
-            </p>
-          </a>
-        </li>  
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-         <li class="nav-item">
-          <a href="{{route('service-list')}}"
-            class="nav-link {{ request()->segment(2) === 'service' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            Services
-            </p>
-          </a>
-        </li>  
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-         <li class="nav-item">
-          <a href="{{route('contact-list')}}"
-            class="nav-link {{ request()->segment(2) === 'contact' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            Contact
-            </p>
-          </a>
-        </li>  
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item">
-          <a href="{{route('work-list')}}"
-            class="nav-link {{ request()->segment(2) === 'work' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            SEO All Work
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-        @auth
-        @if(auth()->user()->role == 1)
-        <li class="nav-item">
-          <a href="{{route('scoblog-list')}}"
-            class="nav-link {{ request()->segment(2) === 'scoblog' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            SEO All Blog
-            </p>
-          </a>
-        </li> 
-        @endif
-        @endauth
-                <!-- <li class="nav-item">
-          <a href="{{route('oneblog-list')}}"
-            class="nav-link {{ request()->segment(2) === 'oneblog' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-            Find work newblog page by id
-            </p>
-          </a>
-        </li>  -->
-        <!-- <li class="nav-item">
-          <a href="{{route('solowork-list')}}"
-            class="nav-link {{ request()->segment(2) === 'solo' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-            <p>
-           Find SEO scowork page by id
-            </p>
-          </a>
-        </li>  -->
-        <!-- <li class="nav-item">
-          <a href="{{route('products.index')}}"
-            class="nav-link {{ request()->segment(2) === 'products' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-              Product
-            </p>
-          </a>
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a href="{{route('list-orders')}}"
-            class="nav-link {{ request()->segment(2) === 'allOrders' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-              Orders
-            </p>
-          </a>
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a href="{{route('gallery.index')}}"
-            class="nav-link {{ request()->segment(2) === 'gallery' ? 'active' : '' }}">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-
-            <p>
-              Gallery
-            </p>
-          </a>
-        </li> -->
-
-      </ul>
-    </nav>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Typography</span>
+              </a>
+            </li>
+         
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Login</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user-plus"></i>
+                </span>
+                <span class="hide-menu">Register</span>
+              </a>
+            </li>
+            
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-mood-happy"></i>
+                </span>
+                <span class="hide-menu">Icons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Sample Page</span>
+              </a>
+            </li>
+</ul>
+</nav>
+    <!-- Sidebar Menu -->
+   
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->

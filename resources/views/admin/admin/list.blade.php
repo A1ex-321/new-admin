@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-0">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v3</h1>
+            <h1 class="m-0">User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -47,45 +47,38 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Role</th>
-                    <th>Action</th>
+            <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th style="width: 10px">#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($getRecord as $value)
+            <tr>
+                <td>{{$value->id}}</td>
+                <td>{{$value->name}}</td>
+                <td>{{$value->email}}</td>
+                <td>{{$value->status == 0 ? 'Active' : 'Inactive'}}</td>
+                <td>{{$value->role == 0 ? 'Admin' : 'Super Admin'}}</td>
+                <td>
+                    <a href="{{url('admin/admin/edit/'.$value->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                    @foreach($getRecord as $value )
+</div>
 
-
-                  <tr>
-                    <td>{{$value->id}}</td>
-                    <td>{{$value->name}} </td>
-                    <td>{{$value->email}} </td>
-                    <td>{{$value->status==0 ? 'Active' : 'Inactive'}} </td>
-                    <td>{{$value->role==0 ? 'Admin' : 'Super Admin'}} </td>
-
-
-                    <td >
-
-                          <a href="{{url('admin/admin/edit/'.$value->id)}}" class="btn  "><i class="fas fa-edit"></i>
-                          </a>
-                          <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/admin/delete/'.$value->id)}}" class="btn "><i class="fas fa-trash"></i></a>
-
-                      </td>
-
-                  </tr>
-                  @endforeach
-
-                </tbody>
-              </table>
-            </div>
             <!-- /.card-body -->
           </div>
           </div>

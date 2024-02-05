@@ -34,58 +34,46 @@
     </div>
 
     <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">Add New Work <small></small></h3>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title">Add New Work</h3>
+                    </div>
+                    <div class="card-body">
                         <form action="{{ route('create-blog') }}" method="post" enctype="multipart/form-data">
-                            {{csrf_field()}}
-
-
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Title<span style="color:red">*</span></label>
-                                    <input type="text" name="Tittle" class="form-control" id="exampleInputEmail1" placeholder="Title" value="" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Description<span style="color:red"></span></label>
-                                   <textarea name="Description" class="form-control" id="exampleInputEmail1" placeholder="Description" style="width: 100%; height: 100px;"></textarea>
-
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Thumb Image<span style="color:red">*</span></label>
-                                    <input type="file" name="Image" class="form-control" id="exampleInputEmail1" placeholder="Image" value="" required>
-                                </div>
-                                <input type="hidden" id="imageIds" name="multiimage" value="">
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Multiple Image<span style="color:red">*</span></label>
-                                    <input type="file" id="imageInput" name="" class="form-control" value="" multiple required>
-                                </div>
-
-
-                                <!-- <div class="form-group">
-                                    <label for="exampleInputEmail1">multiple Image<span style="color:red">*</span></label>
-                                    <input type="file" id="imageInput" name="image" accept="image/*" multiple>
-                                </div> -->
-                                <div id="preview"></div>
-
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                </div>
+                            {{ csrf_field() }}
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title<span style="color:red">*</span></label>
+                                <input type="text" name="Title" class="form-control" id="title" placeholder="Enter  title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea name="Description" class="form-control" id="description" placeholder="Enter  description" rows="4"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="thumbImage" class="form-label">Thumb Image<span style="color:red">*</span></label>
+                                <input type="file" name="Image" class="form-control" id="thumbImage" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="multipleImages" class="form-label">Multiple Images<span style="color:red">*</span></label>
+                                <input type="file" id="imageInput" name="multiimage[]" class="form-control" multiple required>
+                            </div>
+                            <div id="preview" class="mb-3"></div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
                         </form>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
 </div>
 </div>
 

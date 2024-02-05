@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-0">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Add Work</h1>
+                    <h1 class="m-0"></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -49,48 +49,45 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Thumb Image</th>
+                    <th scope="col">View</th>
+                    <th scope="col">Edit & Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $counter = 1; @endphp
+                @foreach ($getRecord as $value)
+                    <tr>
+                        <td>{{ $counter++ }}</td>
+                        <td>{{$value->Tittle}}</td>
+                        <td>{{$value->Description}}</td>
+                        <td>
+                            <img src="{{ asset('public/images/' . $value->Image) }}" alt="Image" class="img-thumbnail" width="80" height="80">
+                        </td>
+                        <td>
+                            <a href="{{route('view-blogcontent', ['id' => $value->id])}}" class="btn btn-success">
+                                <i class="fas fa-eye"></i>
+                                <span>Photos</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url('admin/blog/edit/'.$value->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                            <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/brand/delete/'.$value->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-                                        <th>Id</th>
-                                        <th>Title </th>
-                                        <th>Description</th>
-                                        <th>Thumb Image</th>
-                                        <th>View</th>
-                                        <th>Edit & Delete</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @php $counter = 1; @endphp
-
-                                    @foreach ($getRecord as $value)
-                                    <tr>
-                                    <td>{{ $counter++ }}</td>
-                                        <td>{{$value->Tittle}}</td>
-                                        <td>{{$value->Description}}</td>
-                                        <td><img src="{{ asset('public/images/' . $value->Image) }}" alt="Image" width="80" height="80"></td>
-
-                                        <td>
-                                            <button style="background-color: #cae8ca; color: #fff; border: none;">
-                                                <a href="{{route('view-blogcontent', ['id' => $value->id])}}" class="btn">
-                                                    <i class=""></i>
-                                                    <span>View Blog content</span>
-                                                </a>
-                                            </button>
-                                        </td>
-
-                                        <td>
-                                            <a href="{{url('admin/blog/edit/'.$value->id)}}" class="btn"><i class="fas fa-edit"></i></a>
-                                            <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/brand/delete/'.$value->id)}}" class="btn"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-
-                            </table>
-                        </div>
                         <!-- /.card-body -->
                     </div>
                 </div>

@@ -52,8 +52,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">Add Blog data <small></small></h3>
+                        <div style="background-color:skyblue;" class="card-header">
+                            <h3  class="card-title">Add Blog data <small></small></h3>
                         </div>
                         <div class="container">
                             <form action="{{ route('create-blogsco') }}" method="post" enctype="multipart/form-data">
@@ -114,47 +114,55 @@
                             <h3 class="card-title"></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
+                        <div class="card">
+    <div class="card-body p-0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Thumb Image</th>
+                    <th>View Content</th>
+                    <th>Edit & Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $counter = 1; @endphp
+                @foreach ($getRecord as $value)
+                <tr>
+                    <td>{{ $counter++ }}</td>
+                    <td>{{ $value->title }}</td>
+                    <td>{{ $value->description }}</td>
+                    <td>
+                        <img src="{{ asset('public/images/' . $value->image) }}" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;">
+                    </td>
+                    <td>
+                        <button class="btn btn-success">
+                            <a href="{{route('view_blogcontent', ['id' => $value->id])}}" class="btn-link text-white">
+                                <i class="fas fa-eye"></i>
+                                <span>view</span>
+                            </a>
+                        </button>
+                    </td>
+                    <td>
+    <div class="btn-group" role="group" aria-label="Blog Actions">
+        <a href="{{url('admin/blogseo/edit/'.$value->id)}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Blog">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/blogseo/delete/'.$value->id)}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Blog">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
+</td>
 
-                                        <th>Id</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Thum Image</th>
-                                        <th>view content</th>
-                                        <th>Edit & Delete</th>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $counter = 1; @endphp
-
-                                    @foreach ($getRecord as $value)
-                                    <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $value->title }}</td>
-                                        <td>{{ $value->description }}</td>
-                                        <td> <img src="{{ asset('public/images/' . $value->image) }}" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;">
-                                        </td>
-                                        <td><button style="background-color: #cae8ca; color: #fff; border: none;">
-                                                <a href="{{route('view_blogcontent', ['id' => $value->id])}}" class="btn">
-                                                    <i class=""></i>
-                                                    <span>View Blog content</span>
-                                                </a>
-                                            </button></td>
-
-                                        <td>
-                                            <a href="{{url('admin/blogseo/edit/'.$value->id)}}" class="btn"><i class="fas fa-edit"></i></a>
-                                            <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/blogseo/delete/'.$value->id)}}" class="btn"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-
-                            </table>
-                        </div>
                         <!-- /.card-body -->
                     </div>
                 </div>
